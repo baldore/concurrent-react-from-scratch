@@ -1,8 +1,18 @@
-import { render, createTextElement, createElement } from './utils'
+import { render, createElement } from './utils'
 
-// const textEl = createTextElement('hola mundo genial')
-// const element = createElement('h1', undefined, textEl)
-const element = <h1>hola mundo genial</h1>
+const React = { createElement }
+
+function App() {
+  return (
+    <div>
+      <h1>hello world!</h1>
+      <ul>
+        <li>foo</li>
+        <li>bar</li>
+      </ul>
+    </div>
+  )
+}
 
 const container = document.getElementById('root')
-render(element, container)
+render(<App />, container)
