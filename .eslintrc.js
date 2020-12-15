@@ -17,5 +17,6 @@ module.exports = {
         singleQuote: true,
       },
     ],
+    'no-undef': 'error',
   },
 }
