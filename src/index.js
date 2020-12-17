@@ -1,6 +1,8 @@
-import { render, createElement } from './utils'
+import { createElement, performUnitOfWork, commitWork } from './utils'
 
 const React = { createElement }
+let wipRoot,
+  nextUnitOfWork = null
 
 function App() {
   return (
@@ -15,4 +17,20 @@ function App() {
 }
 
 const container = document.getElementById('root')
+
+function render(el, _container) {
+  wipRoot = {
+    dom: _container,
+    props: {
+      children: [el],
+    },
+  }
+
+  nextUnitOfWork = wipRoot
+  while (nextUnitOfWork) {
+    nextUnitOfWork = performUnitOfWork(nextUnitOfWork)
+  }
+  commitWork(wipRoot.child)
+}
+
 render(<App />, container)
